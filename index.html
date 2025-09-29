@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gray Square - A Mind-Bending Puzzle Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #202026;
+            --text-primary: #A0AEC0;
+            --text-secondary: #8A8A8A;
+            --white: #FFFFFF;
+            --color-red: #E53E3E;
+            --color-green: #48BB78;
+            --color-blue: #4299E1;
+            --color-yellow: #F6E05E;
+            --color-purple: #9F7AEA;
+            --color-orange: #ED8936;
+            --color-brown: #A0522D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(32, 32, 38, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(160, 174, 192, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--bg-dark);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--text-secondary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn.disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+            color: var(--bg-dark);
+        }
+
+
+        .hero-grid-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 50px);
+            grid-template-rows: repeat(7, 50px);
+            gap: 8px;
+            transform: rotateY(-20deg) rotateX(10deg);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-grid:hover {
+            transform: rotateY(0deg) rotateX(0deg);
+        }
+
+        .grid-cell {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(160, 174, 192, 0.1);
+            border-radius: 6px;
+            transition: transform 0.3s ease, background-color 0.5s ease;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 4rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .split-section {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .split-section .content, .split-section .visual {
+            flex: 1;
+        }
+
+        .split-section .content h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .split-section .visual img, .split-section .visual .mock-grid {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .split-section .visual.portrait img {
+            max-width: 350px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background-color: rgba(160, 174, 192, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(160, 174, 192, 0.1);
+        }
+
+        .feature-card .icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Level Design Showcase */
+        .mock-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            gap: 4px;
+            background-color: var(--bg-dark);
+            padding: 10px;
+            border: 1px solid rgba(160, 174, 192, 0.1);
+        }
+
+        .mock-cell {
+            width: 100%;
+            padding-bottom: 100%; /* Aspect ratio 1:1 */
+            border-radius: 4px;
+            background-color: rgba(160, 174, 192, 0.1);
+        }
+
+        .mock-cell.red { background-color: var(--color-red); }
+        .mock-cell.green { background-color: var(--color-green); }
+        .mock-cell.blue { background-color: var(--color-blue); }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(160, 174, 192, 0.1);
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            margin: 0 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                height: auto;
+                padding: 120px 0 60px 0;
+            }
+            .hero-content {
+                margin-top: 4rem;
+            }
+            .hero-grid {
+                transform: rotateY(0deg) rotateX(0deg);
+                grid-template-columns: repeat(7, 40px);
+                grid-template-rows: repeat(7, 40px);
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+            .split-section {
+                flex-direction: column;
+            }
+            .split-section.reverse {
+                flex-direction: column-reverse;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none; /* Simple hiding for demo purposes */
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .hero-grid {
+                grid-template-columns: repeat(7, 30px);
+                grid-template-rows: repeat(7, 30px);
+                gap: 5px;
+            }
+            .grid-cell {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">Gray Square</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#levels">Levels</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container" style="display:flex; width:100%;">
+            <div class="hero-content">
+                <h1>A Mind-Bending Puzzle of Patterns and Colors.</h1>
+                <p class="tagline">Swap tiles, solve patterns, and challenge your mind with an ever-growing collection of handcrafted puzzles. Simple to learn, yet deeply strategic.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">App Store - Coming Soon</a>
+                    <a href="#" class="btn btn-secondary">Get it on Google Play</a>
+                </div>
+            </div>
+            <div class="hero-grid-container">
+                <div id="hero-grid" class="hero-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="split-section">
+                <div class="visual portrait">
+                    <img src="https://placehold.co/400x500/202026/A0AEC0?text=Screenshot1" alt="Gray Square gameplay screenshot">
+                </div>
+                <div class="content">
+                    <h3>Simple Mechanic, Deep Strategy.</h3>
+                    <p>The goal is simple: match the target pattern on the grid. To do this, you can pick up a colored tile and swap it with any adjacent tile. Every swap brings you one step closer to the solution or deeper into the puzzle. With a limited number of moves, every decision counts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Gameplay Section -->
+    <section id="gameplay" class="section">
+        <div class="container">
+            <div class="split-section">
+                <div class="content">
+                    <h3>Evolving Challenges.</h3>
+                    <p>What begins with simple lines and squares quickly evolves into complex, multi-colored mosaics. The Gray Square is designed to grow with you, continuously introducing new patterns and color combinations that demand new ways of thinking. Each level pack is a new chapter in your puzzle-solving journey.</p>
+                </div>
+                <div class="visual portrait">
+                    <img src="https://placehold.co/400x500/202026/A0AEC0?text=Screenshot2" alt="Portrait gameplay screenshot of a complex level">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Designed for Thinkers</h2>
+            <p class="section-subtitle">A minimalist experience focused on pure puzzle-solving.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.475 2.118A2.25 2.25 0 0 1 .879 17.52zM6.375 18H12m0 0a2.25 2.25 0 0 1 2.25 2.25M12 18v-2.25A2.25 2.25 0 0 1 14.25 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25m-6.75-2.25a.75.75 0 0 0-1.5 0v2.25a.75.75 0 0 0 1.5 0v-2.25z" />
+                        </svg>
+                    </div>
+                    <h4>Handcrafted Puzzles</h4>
+                    <p>Discover a vast collection of carefully designed puzzles. New level packs are added with every update, ensuring a fresh challenge always awaits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M12 7.5V5.25m0 2.25l-2.25-1.313M6.343 7.5l-2.25-1.313M6.343 7.5l-2.25 1.313M6.343 7.5v2.25m11.314 0l-2.25-1.313m2.25 1.313l-2.25 1.313m2.25-1.313v2.25" />
+                        </svg>
+                    </div>
+                    <h4>Minimalist Design</h4>
+                    <p>No distractions. Just you and the puzzle. The clean interface and soothing color palette let you focus on what matters: the solution.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12A2.25 2.25 0 0 0 20.25 14.25V3m-16.5 0h16.5M3.75 3H7.5m1.5-1.5h7.5m-7.5 0a2.25 2.25 0 0 1 2.25-2.25h3a2.25 2.25 0 0 1 2.25 2.25M3.75 3h16.5m-16.5 0a2.25 2.25 0 0 0-2.25 2.25v11.25c0 1.24 1.01 2.25 2.25 2.25h12c1.24 0 2.25-1.01 2.25-2.25V5.25A2.25 2.25 0 0 0 18 3m-16.5 0h16.5" />
+                        </svg>
+                    </div>
+                    <h4>Increasing Challenge</h4>
+                    <p>The puzzles evolve as you progress. Starting with simple lines, you'll soon face complex shapes that will truly test your logic and planning skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Levels Section -->
+    <section id="levels" class="section">
+        <div class="container">
+            <div class="split-section reverse">
+                <div class="content">
+                    <h3>Infinite Challenges, Uniquely Yours.</h3>
+                    <p>Our level generator combines dozens of shape and color patterns to create a vast library of challenges. From simple, single-color lines to complex, rainbow-colored crosses, each level is a new test of your spatial reasoning. The difficulty scales smoothly, ensuring a rewarding challenge for players of all skill levels, with new puzzles added in regular updates.</p>
+                </div>
+                <div class="visual">
+                    <div class="mock-grid">
+                        <!-- Vertical Line Pattern -->
+                        <div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell red"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div>
+                        <div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell green"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div>
+                        <div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell blue"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div>
+                        <div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell red"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div>
+                        <div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell green"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div>
+                        <div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell blue"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div>
+                        <div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell red"></div><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-cta">
+            <h3 class="footer-logo">Gray Square</h3>
+            <p>Ready to start solving? Download the game today.</p>
+            <div class="cta-buttons" style="justify-content:center; margin-top:1.5rem;">
+                <a href="#" class="btn btn-primary">App Store - Coming Soon</a>
+                <a href="#" class="btn btn-secondary">Google Play</a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="mailto:graysquare99@gmail.com">Support</a>
+        </div>
+        <p class="copyright">&copy; 2025 Gray Square. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Hero Grid Animation ---
+        const gridContainer = document.getElementById('hero-grid');
+        const gridSize = 7;
+        const numCells = gridSize * gridSize;
+        const cells = [];
+        const colors = ['--color-red', '--color-green', '--color-blue', '--color-yellow', '--color-purple', '--color-orange', '--color-brown'];
+
+        for (let i = 0; i < numCells; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            gridContainer.appendChild(cell);
+            cells.push(cell);
+        }
+
+        function swapCells(cellA, cellB) {
+            const rectA = cellA.getBoundingClientRect();
+            const rectB = cellB.getBoundingClientRect();
+            const transformA = `translate(${rectB.left - rectA.left}px, ${rectB.top - rectA.top}px)`;
+            const transformB = `translate(${rectA.left - rectB.left}px, ${rectA.top - rectB.top}px)`;
+            cellA.style.transform = transformA;
+            cellB.style.transform = transformB;
+            setTimeout(() => {
+                cellA.style.transform = '';
+                cellB.style.transform = '';
+                const tempColor = cellA.style.backgroundColor;
+                cellA.style.backgroundColor = cellB.style.backgroundColor;
+                cellB.style.backgroundColor = tempColor;
+            }, 300);
+        }
+
+        // Set initial colors for all cells
+        cells.forEach(cell => {
+            cell.style.backgroundColor = `var(${colors[Math.floor(Math.random() * colors.length)]})`;
+        });
+
+        setInterval(() => {
+            const cellIndex1 = Math.floor(Math.random() * numCells);
+            let cellIndex2 = -1;
+            const deltas = [-1, 1, -gridSize, gridSize].filter(d => {
+                const newIndex = cellIndex1 + d;
+                const c1_row = Math.floor(cellIndex1 / gridSize);
+                const c1_col = cellIndex1 % gridSize;
+                const n_row = Math.floor(newIndex / gridSize);
+                const n_col = newIndex % gridSize;
+                return newIndex >= 0 && newIndex < numCells && (c1_row === n_row || c1_col === n_col);
+            });
+
+            if(deltas.length > 0) {
+                cellIndex2 = cellIndex1 + deltas[Math.floor(Math.random() * deltas.length)];
+            } else {
+                cellIndex2 = (cellIndex1 + 1) % numCells;
+            }
+
+            if (cells[cellIndex1] && cells[cellIndex2]) {
+                swapCells(cells[cellIndex1], cells[cellIndex2]);
+            }
+        }, 1000);
+
+        // --- Scroll Animations ---
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        sections.forEach(section => observer.observe(section));
+    });
+</script>
+</body>
+</html>
