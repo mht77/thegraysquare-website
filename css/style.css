@@ -363,13 +363,14 @@ footer {
 
 @media (max-width: 900px) {
     .hero {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
         height: auto;
         padding: 100px 0 60px 0;
     }
     .hero-content {
         margin-top: 3rem;
+        order: -1;
     }
     .hero-grid {
         transform: rotateY(0deg) rotateX(0deg);
