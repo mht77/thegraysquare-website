@@ -118,6 +118,14 @@ nav {
     overflow: hidden;
 }
 
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    width: 100%;
+}
+
 .hero-content {
     flex: 1;
     z-index: 10;
@@ -362,9 +370,11 @@ footer {
 }
 
 @media (max-width: 900px) {
-    .hero {
+    .hero-container {
         flex-direction: column;
         text-align: center;
+    }
+    .hero {
         height: auto;
         padding: 100px 0 60px 0;
     }
