@@ -69,4 +69,20 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.1
     });
     sections.forEach(section => observer.observe(section));
+
+    // --- Mobile Navigation ---
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('is-active');
+        mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            hamburger.classList.remove('is-active');
+            mobileNav.style.display = 'none';
+        }
+    });
 });
