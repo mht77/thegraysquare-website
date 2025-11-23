@@ -1,11 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // --- Hero Grid Animation ---
     const gridContainer = document.getElementById('hero-grid');
     const gridSize = 7;
     const numCells = gridSize * gridSize;
     const cells = [];
+    // Colors corresponding to CSS variables
     const colors = ['--color-red', '--color-green', '--color-blue', '--color-yellow', '--color-purple', '--color-orange', '--color-brown'];
 
+    // Initialize Grid
     for (let i = 0; i < numCells; i++) {
         const cell = document.createElement('div');
         cell.classList.add('grid-cell');
@@ -13,49 +15,71 @@ document.addEventListener('DOMContentLoaded', function() {
         cells.push(cell);
     }
 
-    function swapCells(cellA, cellB) {
-        const rectA = cellA.getBoundingClientRect();
-        const rectB = cellB.getBoundingClientRect();
-        const transformA = `translate(${rectB.left - rectA.left}px, ${rectB.top - rectA.top}px)`;
-        const transformB = `translate(${rectA.left - rectB.left}px, ${rectA.top - rectB.top}px)`;
-        cellA.style.transform = transformA;
-        cellB.style.transform = transformB;
-        setTimeout(() => {
-            cellA.style.transform = '';
-            cellB.style.transform = '';
-            const tempColor = cellA.style.backgroundColor;
-            cellA.style.backgroundColor = cellB.style.backgroundColor;
-            cellB.style.backgroundColor = tempColor;
-        }, 300);
-    }
+    // State
+    const cellColors = new Array(numCells).fill(0).map(() => colors[Math.floor(Math.random() * colors.length)]);
+    let cursorIndex = Math.floor(Math.random() * numCells);
+    let heldColor = colors[Math.floor(Math.random() * colors.length)];
 
-    // Set initial colors for all cells
-    cells.forEach(cell => {
-        cell.style.backgroundColor = `var(${colors[Math.floor(Math.random() * colors.length)]})`;
+    // Apply initial colors
+    cells.forEach((cell, i) => {
+        cell.style.backgroundColor = `var(${cellColors[i]})`;
     });
 
-    setInterval(() => {
-        const cellIndex1 = Math.floor(Math.random() * numCells);
-        let cellIndex2 = -1;
-        const deltas = [-1, 1, -gridSize, gridSize].filter(d => {
-            const newIndex = cellIndex1 + d;
-            const c1_row = Math.floor(cellIndex1 / gridSize);
-            const c1_col = cellIndex1 % gridSize;
-            const n_row = Math.floor(newIndex / gridSize);
-            const n_col = newIndex % gridSize;
-            return newIndex >= 0 && newIndex < numCells && (c1_row === n_row || c1_col === n_col);
-        });
+    // Create Cursor Element
+    const cursor = document.createElement('div');
+    cursor.classList.add('game-cursor');
+    gridContainer.appendChild(cursor);
 
-        if(deltas.length > 0) {
-            cellIndex2 = cellIndex1 + deltas[Math.floor(Math.random() * deltas.length)];
-        } else {
-            cellIndex2 = (cellIndex1 + 1) % numCells;
-        }
+    // Helper to get position
+    function getPosition(index) {
+        const row = Math.floor(index / gridSize);
+        const col = index % gridSize;
+        // 50px cell + 6px gap
+        const x = col * 56;
+        const y = row * 56;
+        return { x, y };
+    }
 
-        if (cells[cellIndex1] && cells[cellIndex2]) {
-            swapCells(cells[cellIndex1], cells[cellIndex2]);
-        }
-    }, 1000);
+    // Initial Cursor State
+    const startPos = getPosition(cursorIndex);
+    cursor.style.transform = `translate(${startPos.x}px, ${startPos.y}px) translateZ(20px)`;
+    cursor.style.backgroundColor = `var(${heldColor})`;
+
+    function updateGrid() {
+        const row = Math.floor(cursorIndex / gridSize);
+        const col = cursorIndex % gridSize;
+        const neighbors = [];
+
+        if (row > 0) neighbors.push(cursorIndex - gridSize);
+        if (row < gridSize - 1) neighbors.push(cursorIndex + gridSize);
+        if (col > 0) neighbors.push(cursorIndex - 1);
+        if (col < gridSize - 1) neighbors.push(cursorIndex + 1);
+
+        const nextIndex = neighbors[Math.floor(Math.random() * neighbors.length)];
+
+        // 1. Move Cursor Visual
+        const nextPos = getPosition(nextIndex);
+        cursor.style.transform = `translate(${nextPos.x}px, ${nextPos.y}px) translateZ(20px)`;
+
+        // 2. Logic Update (Delayed to match movement)
+        setTimeout(() => {
+            const colorAtNext = cellColors[nextIndex];
+
+            // Swap Logic:
+            // The cell takes the held color
+            cellColors[nextIndex] = heldColor;
+            cells[nextIndex].style.backgroundColor = `var(${heldColor})`;
+
+            // The held color becomes what was at the cell
+            heldColor = colorAtNext;
+            cursor.style.backgroundColor = `var(${heldColor})`;
+
+            cursorIndex = nextIndex;
+        }, 250); // Halfway through the 500ms transition
+    }
+
+    // Run animation
+    setInterval(updateGrid, 800);
 
     // --- Scroll Animations ---
     const sections = document.querySelectorAll('.section');
