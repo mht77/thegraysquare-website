@@ -30,20 +30,49 @@ document.addEventListener('DOMContentLoaded', function () {
     cursor.classList.add('game-cursor');
     gridContainer.appendChild(cursor);
 
+    // Dynamic Dimensions
+    let cellSize = 0;
+    let gapSize = 0;
+
+    function updateDimensions() {
+        const firstCell = cells[0];
+        if (firstCell) {
+            cellSize = firstCell.offsetWidth;
+            // Calculate gap from computed style of container
+            const computedStyle = window.getComputedStyle(gridContainer);
+            gapSize = parseInt(computedStyle.gap || '0', 10);
+
+            // Update cursor size to match cells
+            cursor.style.width = `${cellSize}px`;
+            cursor.style.height = `${cellSize}px`;
+
+            // Force cursor update to new position immediately
+            const pos = getPosition(cursorIndex);
+            cursor.style.transform = `translate(${pos.x}px, ${pos.y}px) translateZ(20px)`;
+        }
+    }
+
     // Helper to get position
     function getPosition(index) {
         const row = Math.floor(index / gridSize);
         const col = index % gridSize;
-        // 50px cell + 6px gap
-        const x = col * 56;
-        const y = row * 56;
+        const x = col * (cellSize + gapSize);
+        const y = row * (cellSize + gapSize);
         return { x, y };
     }
 
-    // Initial Cursor State
-    const startPos = getPosition(cursorIndex);
-    cursor.style.transform = `translate(${startPos.x}px, ${startPos.y}px) translateZ(20px)`;
-    cursor.style.backgroundColor = `var(${heldColor})`;
+    // Initial Dimension Calculation
+    // We need to wait a tick to ensure styles are applied if loaded quickly
+    setTimeout(() => {
+        updateDimensions();
+        // Initial Cursor State
+        const startPos = getPosition(cursorIndex);
+        cursor.style.transform = `translate(${startPos.x}px, ${startPos.y}px) translateZ(20px)`;
+        cursor.style.backgroundColor = `var(${heldColor})`;
+    }, 0);
+
+    // Handle Resize
+    window.addEventListener('resize', updateDimensions);
 
     function updateGrid() {
         const row = Math.floor(cursorIndex / gridSize);
