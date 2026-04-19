@@ -7,23 +7,19 @@
         <!-- Card 1: Horizontal Line -->
         <rect x="0" y="0" width="170" height="170" rx="12" fill="#2A2A30" stroke="#444" stroke-width="1"/>
         <text x="85" y="35" font-family="Arial" font-size="14" fill="#888" text-anchor="middle" font-weight="bold">HORIZONTAL</text>
-        <g transform="translate(25, 75)">
+        <g transform="translate(50, 75)">
             <rect x="0" y="0" width="20" height="20" rx="4" fill="#db4040d6"/>
             <rect x="25" y="0" width="20" height="20" rx="4" fill="#db4040d6"/>
             <rect x="50" y="0" width="20" height="20" rx="4" fill="#db4040d6"/>
-            <rect x="75" y="0" width="20" height="20" rx="4" fill="#db4040d6"/>
-            <rect x="100" y="0" width="20" height="20" rx="4" fill="#db4040d6"/>
         </g>
 
         <!-- Card 2: Vertical Line -->
         <rect x="190" y="0" width="170" height="170" rx="12" fill="#2A2A30" stroke="#444" stroke-width="1"/>
         <text x="275" y="35" font-family="Arial" font-size="14" fill="#888" text-anchor="middle" font-weight="bold">VERTICAL</text>
-        <g transform="translate(265, 45)">
+        <g transform="translate(265, 50)">
             <rect x="0" y="0" width="20" height="20" rx="4" fill="#3a9961"/>
             <rect x="0" y="25" width="20" height="20" rx="4" fill="#3a9961"/>
             <rect x="0" y="50" width="20" height="20" rx="4" fill="#3a9961"/>
-            <rect x="0" y="75" width="20" height="20" rx="4" fill="#3a9961"/>
-            <rect x="0" y="100" width="20" height="20" rx="4" fill="#3a9961"/>
         </g>
 
         <!-- Card 3: Rectangle (Square) -->
@@ -44,22 +40,18 @@
             <rect x="50" y="50" width="20" height="20" rx="4" fill="#4299E1"/>
         </g>
 
-        <!-- Card 4: Triangle -->
+        <!-- Card 4: Cross -->
         <rect x="190" y="190" width="170" height="170" rx="12" fill="#2A2A30" stroke="#444" stroke-width="1"/>
-        <text x="275" y="225" font-family="Arial" font-size="14" fill="#888" text-anchor="middle" font-weight="bold">TRIANGLE</text>
-        <g transform="translate(215, 250)">
-            <!-- Row 1 (1) -->
-            <rect x="50" y="0" width="20" height="20" rx="4" fill="#F6E05E"/>
-            <!-- Row 2 (3) -->
+        <text x="275" y="225" font-family="Arial" font-size="14" fill="#888" text-anchor="middle" font-weight="bold">CROSS</text>
+        <g transform="translate(240, 250)">
+            <!-- Top arm -->
+            <rect x="25" y="0" width="20" height="20" rx="4" fill="#F6E05E"/>
+            <!-- Horizontal arm -->
+            <rect x="0" y="25" width="20" height="20" rx="4" fill="#F6E05E"/>
             <rect x="25" y="25" width="20" height="20" rx="4" fill="#F6E05E"/>
             <rect x="50" y="25" width="20" height="20" rx="4" fill="#F6E05E"/>
-            <rect x="75" y="25" width="20" height="20" rx="4" fill="#F6E05E"/>
-            <!-- Row 3 (5) -->
-            <rect x="0" y="50" width="20" height="20" rx="4" fill="#F6E05E"/>
+            <!-- Bottom arm -->
             <rect x="25" y="50" width="20" height="20" rx="4" fill="#F6E05E"/>
-            <rect x="50" y="50" width="20" height="20" rx="4" fill="#F6E05E"/>
-            <rect x="75" y="50" width="20" height="20" rx="4" fill="#F6E05E"/>
-            <rect x="100" y="50" width="20" height="20" rx="4" fill="#F6E05E"/>
         </g>
     </g>
 </svg>
