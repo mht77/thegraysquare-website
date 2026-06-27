@@ -1,10 +1,10 @@
 # The Gray Square
 
-**A Mind-Bending Puzzle Game of Colors and Pathfinding**
+*A mind-bending puzzle game of colors and pathfinding*
 
-![The Gray Square Icon](icon.png)
+<img src="icon.png" width="120" alt="The Gray Square Icon">
 
-Welcome to **The Gray Square**, an elegant, minimalist grid puzzle where every single move changes the board. You must think steps ahead, manage your tile inventory, and route your path perfectly to construct target patterns.
+Welcome to **The Gray Square**, an elegant, minimalist grid puzzle where every single move alters the board. Guide the cursor, swap colors as you navigate, and plan your path steps ahead to rebuild complex patterns.
 
 ---
 
@@ -18,7 +18,7 @@ The goal of the game is simple: **recreate the target pattern on the grid**. How
 * You must navigate the grid, pick up colors from one location, transport them, and drop them where they belong to form the target shape.
 * Every move leaves a trail that alters the puzzle state.
 
-![Pattern Selection Examples](pattern-selection.png)
+<img src="pattern-selection.png" width="400" alt="Pattern Selection Examples">
 
 ### Complexity Progression
 Puzzles scale from basic to advanced across different level packs:
@@ -27,7 +27,7 @@ Puzzles scale from basic to advanced across different level packs:
 3. **Symmetrical Accents & Trios**: Patterns with mirrored accent tiles in the middle.
 4. **Mosaics & Crosses**: Intricate, rainbow-colored structures that require multiple color pickups and drop-offs.
 
-![Gameplay Demo](gameplay.png)
+<img src="gameplay.png" width="300" alt="Gameplay Demo">
 
 ---
 
@@ -41,4 +41,4 @@ Behind the scenes, the game uses a customized **A\* Search Algorithm** to verify
 ---
 
 ## 📄 Privacy Policy
-For the Privacy Policy of the game, see `PRIVACY-POLICY.md` (included in this Gist).
+For the Privacy Policy of the game, see [Privacy Policy](https://gist.github.com/mht77/2cf33813b2cb057497a8a619cfced4fa).
