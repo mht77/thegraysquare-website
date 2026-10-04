@@ -1,4 +1,0 @@
-# Ignore all hidden files and directories
-**/.*
-# ignore credentials files
-**/*creds*

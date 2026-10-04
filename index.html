@@ -1,249 +1,279 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gray Square - A Mind-Bending Puzzle Game</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/files/icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/files/icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/files/icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Gray Square — Swipe. Swap. Solve.</title>
+  <meta name="description" content="A minimalist puzzle about carrying colors across a 7×7 board. One rule, 343 solver-checked boards, a real par on every one. No ads, no timers, no lives.">
+  <meta name="theme-color" content="#16171B">
+  <link rel="canonical" href="https://thegraysquare.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thegraysquare.com/">
+  <meta property="og:title" content="The Gray Square — Swipe. Swap. Solve.">
+  <meta property="og:description" content="One rule: landing trades your color for the tile's. 343 boards, seven shapes, no ads.">
+  <meta property="og:image" content="https://thegraysquare.com/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="apple-itunes-app" content="app-id=6810801351">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
 </head>
-
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="g-circle" viewBox="-1 -1 2 2"><circle r=".62" fill="currentColor"/></symbol>
+    <symbol id="g-triangle-up" viewBox="-1 -1 2 2"><path d="M0 -.84 .727 .42 -.727 .42Z" fill="currentColor"/></symbol>
+    <symbol id="g-square" viewBox="-1 -1 2 2"><rect x="-.55" y="-.55" width="1.1" height="1.1" fill="currentColor"/></symbol>
+    <symbol id="g-cross" viewBox="-1 -1 2 2"><path d="M-.5 -.5 .5 .5M.5 -.5 -.5 .5" stroke="currentColor" stroke-width=".44" stroke-linecap="square"/></symbol>
+    <symbol id="g-diamond" viewBox="-1 -1 2 2"><path d="M0 -.74 .74 0 0 .74 -.74 0Z" fill="currentColor"/></symbol>
+    <symbol id="g-triangle-down" viewBox="-1 -1 2 2"><path d="M0 .84 .727 -.42 -.727 -.42Z" fill="currentColor"/></symbol>
+    <symbol id="g-plus" viewBox="-1 -1 2 2"><path d="M-.22 -.68h.44v.46h.46v.44h-.46v.46h-.44v-.46h-.46v-.44h.46Z" fill="currentColor"/></symbol>
+  </svg>
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">The Gray Square</a>
-                <ul class="nav-links">
-                    <li><a href="#about">The Game</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#levels">Puzzles</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="The Gray Square home"><svg><use href="img/icons.svg#mark"/></svg><span>The Gray Square</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="./" aria-current="page">Game</a>
+        <a href="support/">Support</a>
+        <a href="privacy/">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <h1>The <span class="gray">Gray</span><br>Square</h1>
+          <p class="tagline"><span class="t-orange">Swipe.</span> <span class="t-red">Swap.</span> <span class="t-blue">Solve.</span></p>
+          <p class="lede">A minimalist puzzle about carrying colors across a 7×7 board. Wherever the gray square lands, it trades the color it is carrying for the color already there.</p>
+          <div class="stores">
+            <a class="btn btn-primary" href="https://apps.apple.com/app/the-gray-square/id6810801351">
+              <svg><use href="img/icons.svg#apple"/></svg><span><small>Download on the</small>App Store</span>
+            </a>
+            <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.mht.TheGraySquare">
+              <svg><use href="img/icons.svg#play"/></svg><span><small>Get it on</small>Google Play</span>
+            </a>
+          </div>
+          <div class="chips" aria-label="At a glance">
+            <span class="chip" style="--accent:var(--yellow)">343 BOARDS</span>
+            <span class="chip" style="--accent:#A98AD0">7 SHAPES</span>
+            <span class="chip" style="--accent:#7FB07E">NO ADS</span>
+          </div>
         </div>
-        <div class="mobile-nav">
-            <a href="#about">The Game</a>
-            <a href="#features">Features</a>
-            <a href="#levels">Puzzles</a>
+        <div class="hero-phones">
+          <div class="phone back"><img src="img/levels.jpg" width="506" height="1100" alt="The level list: seven sets of seven, gold tiles for levels cleared at par."></div>
+          <div class="phone front"><img src="img/board-goal-cues.jpg" width="506" height="1100" alt="A level in progress: a 7×7 board of colored tiles, the goal row outlined, two cells already ticked green, and the gray square waiting below the board."></div>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <h1>Every Move Changes the Board.</h1>
-                    <p class="tagline">Take control of the Gray Square. Slide across the grid, swap colors, and weave
-                        complex patterns out of chaos in this elegant puzzle experience.</p>
-                    <div class="cta-buttons">
-                        <a href="#" class="btn btn-primary">App Store (Coming Soon)</a>
-                        <a href="#" class="btn btn-secondary">Google Play</a>
-                    </div>
-                </div>
-                <div class="hero-grid-container">
-                    <div id="hero-grid" class="hero-grid"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <div class="split-section">
-                    <div class="visual portrait">
-                        <img src="files/pattern-selection.svg" alt="Gray Square gameplay screenshot">
-                    </div>
-                    <div class="content">
-                        <h3>One Simple Rule, Infinite Possibilities.</h3>
-                        <p>Your goal is simple: recreate the target pattern. But your only tool is the Gray Square
-                            itself. As you guide it across the grid, it instantly swaps its currently held color with
-                            the tile beneath it.</p>
-                        <p>You'll need to think steps ahead. Where do you drop the red tile? How do you retrieve the
-                            blue one? Every movement leaves a trail that reshapes the puzzle.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- New Gameplay Section -->
-        <section id="gameplay" class="section">
-            <div class="container">
-                <div class="split-section">
-                    <div class="content">
-                        <h3>From Simple Lines to Brilliant Mosaics.</h3>
-                        <p>What starts with basic shapes quickly escalates into complex, multicolored challenges. You'll
-                            progress from solving single-color crosses to carefully unravelling brilliant rainbow
-                            patterns.</p>
-                        <p>With an aesthetic, minimalistic design and a soothing atmosphere, The Gray Square offers the
-                            perfect environment to relax while pushing your spatial logic to its limits.</p>
-                    </div>
-                    <div class="visual portrait">
-                        <img src="files/gameplay.svg" alt="Portrait gameplay screenshot of a complex level">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="section">
-            <div class="container">
-                <h2 class="section-title">Designed for Thinkers</h2>
-                <p class="section-subtitle">A premium puzzle experience devoid of unnecessary distractions.</p>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" fill="none">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.475 2.118A2.25 2.25 0 0 1 .879 17.52zM6.375 18H12m0 0a2.25 2.25 0 0 1 2.25 2.25M12 18v-2.25A2.25 2.25 0 0 1 14.25 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25m-6.75-2.25a.75.75 0 0 0-1.5 0v2.25a.75.75 0 0 0 1.5 0v-2.25z" />
-                            </svg>
-                        </div>
-                        <h4>Pure Logic Gameplay</h4>
-                        <p>No timers, no lives, no rush. Take your time, analyze the board, and find the perfect path to
-                            victory in your own time.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" fill="none">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M12 7.5V5.25m0 2.25l-2.25-1.313M6.343 7.5l-2.25-1.313M6.343 7.5l-2.25 1.313M6.343 7.5v2.25m11.314 0l-2.25-1.313m2.25 1.313l-2.25 1.313m2.25-1.313v2.25" />
-                            </svg>
-                        </div>
-                        <h4>Beautiful Design</h4>
-                        <p>Enjoy an elegant, modern UI that brings the grid to life. Colors pop, animations are smooth,
-                            and the squares perfectly snap into place.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" fill="none">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12A2.25 2.25 0 0 0 20.25 14.25V3m-16.5 0h16.5M3.75 3H7.5m1.5-1.5h7.5m-7.5 0a2.25 2.25 0 0 1 2.25-2.25h3a2.25 2.25 0 0 1 2.25 2.25M3.75 3h16.5m-16.5 0a2.25 2.25 0 0 0-2.25 2.25v11.25c0 1.24 1.01 2.25 2.25 2.25h12c1.24 0 2.25-1.01 2.25-2.25V5.25A2.25 2.25 0 0 0 18 3m-16.5 0h16.5" />
-                            </svg>
-                        </div>
-                        <h4>Hundreds of Levels</h4>
-                        <p>Immerse yourself in a vast library of handcrafted challenges. The difficulty scales smoothly
-                            as you discover new ways to manipulate the board.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Levels Section -->
-        <section id="levels" class="section">
-            <div class="container">
-                <div class="split-section reverse">
-                    <div class="content">
-                        <h3>An Endless Test of Brainpower.</h3>
-                        <p>With levels spanning various shapes and dynamic color palettes, to conquer The Gray Square,
-                            you don't just need quick thinking—you need meticulous planning.</p>
-                        <p>Can you navigate the grid with perfect efficiency? The Gray Square is waiting to test your
-                            strategy. New puzzle packs ensure there's always a new puzzle on the horizon.</p>
-                    </div>
-                    <div class="visual">
-                        <div class="mock-grid">
-                            <!-- Row 0: brown, blue, blue, green, yellow, blue, blue -->
-                            <div class="mock-cell brown"></div>
-                            <div class="mock-cell blue"></div>
-                            <div class="mock-cell blue"></div>
-                            <div class="mock-cell green"></div>
-                            <div class="mock-cell yellow"></div>
-                            <div class="mock-cell blue"></div>
-                            <div class="mock-cell blue"></div>
-
-                            <!-- Row 1: red, purple, green, brown, yellow, orange, brown -->
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell purple"></div>
-                            <div class="mock-cell green"></div>
-                            <div class="mock-cell brown"></div>
-                            <div class="mock-cell yellow"></div>
-                            <div class="mock-cell orange"></div>
-                            <div class="mock-cell brown"></div>
-
-                            <!-- Row 2: purple, purple, red, green, green, blue, yellow -->
-                            <div class="mock-cell purple"></div>
-                            <div class="mock-cell purple"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell green"></div>
-                            <div class="mock-cell green"></div>
-                            <div class="mock-cell blue"></div>
-                            <div class="mock-cell yellow"></div>
-
-                            <!-- Row 3: red, yellow, orange, red, red, yellow, orange -->
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell yellow"></div>
-                            <div class="mock-cell orange"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell yellow"></div>
-                            <div class="mock-cell orange"></div>
-
-                            <!-- Row 4: purple, blue, red, brown, yellow, red, purple -->
-                            <div class="mock-cell purple"></div>
-                            <div class="mock-cell blue"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell brown"></div>
-                            <div class="mock-cell yellow"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell purple"></div>
-
-                            <!-- Row 5: purple, blue, red, red, green, brown, blue -->
-                            <div class="mock-cell purple"></div>
-                            <div class="mock-cell blue"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell green"></div>
-                            <div class="mock-cell brown"></div>
-                            <div class="mock-cell blue"></div>
-
-                            <!-- Row 6: green, red, brown, orange, purple, purple, yellow -->
-                            <div class="mock-cell green"></div>
-                            <div class="mock-cell red"></div>
-                            <div class="mock-cell brown"></div>
-                            <div class="mock-cell orange"></div>
-                            <div class="mock-cell purple"></div>
-                            <div class="mock-cell purple"></div>
-                            <div class="mock-cell yellow"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-cta">
-                <h3 class="footer-logo">The Gray Square</h3>
-                <p>Ready to challenge your mind? Start moving the blocks today.</p>
-                <div class="cta-buttons" style="justify-content:center; margin-top:1.5rem;">
-                    <a href="#" class="btn btn-primary">App Store (Coming Soon)</a>
-                    <a href="#" class="btn btn-secondary">Get it on Google Play</a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="mailto:graysquare99@gmail.com">Support</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-            </div>
-            <p class="copyright">&copy; 2026 The Gray Square. All rights reserved.</p>
+    <section class="section glow" id="how" style="--accent:var(--orange)">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">How it plays</p>
+          <h2>Think three moves <b>ahead.</b></h2>
+          <p class="lede">Every move fixes one cell and disturbs another. Try it — a real 7×7 board with a three-cell goal and a par of 9.</p>
         </div>
-    </footer>
 
-    <script src="js/script.js"></script>
+        <div class="demo" id="demo">
+          <div class="demo-panel" tabindex="0" aria-label="Playable demo board. Use the arrow keys to move the gray square.">
+            <div class="demo-hud">
+              <div class="hud-card hud-goal">
+                <div class="goal-map" aria-hidden="true"></div>
+                <div>
+                  <div class="hud-label">Goal</div>
+                  <div class="hud-value" data-goal>0 of 3</div>
+                </div>
+              </div>
+              <div class="hud-card">
+                <div class="hud-label">Moves</div>
+                <div class="hud-value" data-moves>0</div>
+                <div class="hud-sub" data-par>9 left for par</div>
+              </div>
+            </div>
+            <div class="board"></div>
+            <div class="start-row" aria-hidden="true"></div>
+            <div class="demo-foot">
+              <p class="demo-msg" aria-live="polite"></p>
+              <button class="icon-btn" type="button" data-reset aria-label="Restart the demo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <ol class="rules">
+            <li>
+              <span class="step-num" style="background:var(--light-blue)">1</span>
+              <div>
+                <h3>Swipe to move</h3>
+                <p>The square starts just below the board, carrying nothing, and slides one cell per swipe.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" style="background:var(--yellow)">2</span>
+              <div>
+                <h3>Landing swaps colors</h3>
+                <p>You drop the color you carry and pick up the one under you. The very first move is free — with nothing in hand, you simply pick a color up.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" style="background:var(--green)">3</span>
+              <div>
+                <h3>Fill the goal cells</h3>
+                <p>Only a handful of cells are marked. The rest of the board is your workshop: a place to park a color you will need in four moves' time.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glow" style="--accent:var(--yellow)">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Par, keys and gold</p>
+          <h2>Beat the par. <b>Earn the gold.</b></h2>
+          <p class="lede">Every board has a solver-checked best score. A solution is really a delivery route, and par is the length of the shortest one.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Par and the move budget</h3>
+            <div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="par"></i><i></i><i></i><i></i><i></i></div>
+            <p><strong>Par</strong> is the fewest moves the level can possibly be solved in — 4 to 25, depending. Past the <strong>move budget</strong>, a clear no longer counts for anything.</p>
+            <p>The move meter under the board tracks you live. A sloppy replay can never cost you a record: the save keeps your best run, not your last.</p>
+          </article>
+          <article class="card">
+            <h3>Clear the board. Earn a key.</h3>
+            <div class="key-row" aria-hidden="true">
+              <span class="key-tile" style="background:var(--green)">+1</span>
+              <span class="key-tile" style="background:var(--gold);color:var(--backdrop)">+2</span>
+              <span class="key-tile" style="background:var(--locked);color:var(--muted)">−1</span>
+            </div>
+            <p>Clear a level and you get a key. Clear it <em>in par</em> and you get two, plus a gold tile on the level list. Keys open levels — and that is all they do.</p>
+            <p>A key opens any locked board whose left or upper neighbor is already open, so a board you cannot crack never blocks the rest. You start with three; key packs are the game's only purchase.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glow" style="--accent:var(--purple)">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">The boards</p>
+          <h2>343 boards. <b>Seven shapes.</b></h2>
+          <p class="lede">49 boards per shape, presented as seven sets of seven. A bigger shape is not simply a harder one — a three-cell line with its colors scattered to opposite corners can outlast a thirteen-cell cross whose pieces happen to be nearby.</p>
+        </div>
+        <div class="patterns">
+          <div class="pattern"><span class="mini"><i></i><i></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span><b>Horizontal</b><small>49 boards</small></span></div>
+          <div class="pattern"><span class="mini"><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i></span><span><b>Vertical</b><small>49 boards</small></span></div>
+          <div class="pattern"><span class="mini"><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i></span><span><b>Cross</b><small>49 boards</small></span></div>
+          <div class="pattern"><span class="mini"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span><span><b>Diagonal</b><small>49 boards</small></span></div>
+          <div class="pattern"><span class="mini"><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span><b>L</b><small>49 boards</small></span></div>
+          <div class="pattern"><span class="mini"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span><b>Square</b><small>49 boards</small></span></div>
+          <div class="pattern"><span class="mini"><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span><b>Triangle</b><small>49 boards</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glow" style="--accent:var(--red)">
+      <div class="wrap grid-2" style="align-items:center;gap:40px">
+        <div>
+          <p class="eyebrow">Accessibility</p>
+          <h2>Made for <b>every eye.</b></h2>
+          <p class="lede" style="margin-top:16px">Seven playable colors on one board is a real accessibility problem, and the palette is hue-only. Colorblind symbols and goal outlines are built in — both toggle mid-level and take effect immediately.</p>
+        </div>
+        <div class="card" id="swatch-card">
+          <div class="swatches">
+            <span class="swatch" style="--c:var(--red)"><svg><use href="#g-circle"/></svg></span>
+            <span class="swatch" style="--c:var(--green)"><svg><use href="#g-triangle-up"/></svg></span>
+            <span class="swatch" style="--c:var(--blue)"><svg><use href="#g-square"/></svg></span>
+            <span class="swatch" style="--c:var(--yellow);color:#16171B"><svg><use href="#g-cross"/></svg></span>
+            <span class="swatch" style="--c:var(--purple)"><svg><use href="#g-diamond"/></svg></span>
+            <span class="swatch" style="--c:var(--orange)"><svg><use href="#g-triangle-down"/></svg></span>
+            <span class="swatch" style="--c:var(--brown)"><svg><use href="#g-plus"/></svg></span>
+          </div>
+          <button class="switch" type="button" role="switch" aria-checked="false" aria-controls="swatch-card" data-symbols-toggle>
+            <span class="track"></span>Colorblind symbols
+          </button>
+          <ul class="ticks" style="margin-top:24px">
+            <li><strong>Colorblind symbols</strong> — every color also carries a distinct shape, on tiles, on your square and in the goal map, so pairs that collapse under red-green CVD stay tellable apart.</li>
+            <li><strong>Outline goal cells</strong> — rings the cells still to fill and badges the ones already right. Left off, the board stays silent about the goal beyond dimming the cells that are not part of it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="grid-2">
+          <article class="card">
+            <p class="eyebrow">Cloud save</p>
+            <h3>Your progress travels</h3>
+            <p>Progress is saved locally first, so an offline phone never loses a thing. On iPhone and iPad it also restores through iCloud; on Android, sign in to Google Play Games and it syncs there.</p>
+            <p>When a device and the cloud disagree the two are <strong>merged rather than overwritten</strong> — unlocked levels combine, the better move count is kept, and a spend on one device cannot come back as extra keys on another.</p>
+          </article>
+          <article class="card">
+            <p class="eyebrow">Machine-verified</p>
+            <h3>Where the numbers come from</h3>
+            <p>A customized <strong>A* search</strong> solves each candidate board and returns its optimal move count, which becomes par. The heuristic estimates a lower bound from transport cost — how far each wrong cell's correct color has to travel to reach it.</p>
+            <p>Boards that cannot be solved, or that solve too cheaply or too expensively, are discarded. Every level in the game is known to be solvable in the count printed on it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Screenshots">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Screenshots</p>
+          <h2>Learn it in <b style="color:#A9824E">ten seconds.</b></h2>
+          <p class="lede">Three rules, then the puzzle is all yours.</p>
+        </div>
+        <div class="gallery">
+          <img src="img/store/board-goal-cues.jpg" width="552" height="1200" loading="lazy" alt="Swipe. Swap. Solve. — a level in progress with the goal row outlined.">
+          <img src="img/store/board.jpg" width="552" height="1200" loading="lazy" alt="Think three moves ahead. — the full 7×7 board.">
+          <img src="img/store/help.jpg" width="552" height="1200" loading="lazy" alt="Learn it in ten seconds. — the How to play screen.">
+          <img src="img/store/patterns.jpg" width="552" height="1200" loading="lazy" alt="343 boards. Seven shapes. — the pattern list.">
+          <img src="img/store/levels.jpg" width="552" height="1200" loading="lazy" alt="Beat the par. Earn the gold. — the level list with gold tiles.">
+          <img src="img/store/win.jpg" width="552" height="1200" loading="lazy" alt="Clear the board. Earn a key. — the win panel.">
+          <img src="img/store/colorblind.jpg" width="552" height="1200" loading="lazy" alt="Made for every eye. — colorblind symbols on every tile.">
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta glow" style="--accent:var(--blue)">
+      <div class="wrap">
+        <img src="img/icon.png" width="96" height="96" alt="">
+        <h2>No ads. No timers. No lives.</h2>
+        <p class="tagline"><span class="t-orange">Swipe.</span> <span class="t-red">Swap.</span> <span class="t-blue">Solve.</span></p>
+        <p class="lede" style="margin:12px auto 0;max-width:36ch">Free on iPhone, iPad and Android, with optional key packs.</p>
+        <div class="stores">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/the-gray-square/id6810801351">
+            <svg><use href="img/icons.svg#apple"/></svg><span><small>Download on the</small>App Store</span>
+          </a>
+          <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.mht.TheGraySquare">
+            <svg><use href="img/icons.svg#play"/></svg><span><small>Get it on</small>Google Play</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Mohammad Toosi</span>
+      <nav aria-label="Footer">
+        <a href="support/">Support</a>
+        <a href="privacy/">Privacy Policy</a>
+        <a href="mailto:graysquare99@gmail.com">graysquare99@gmail.com</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/site.js" defer></script>
 </body>
-
 </html>

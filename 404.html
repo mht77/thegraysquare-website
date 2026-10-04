@@ -1,20 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/404.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — The Gray Square</title>
+  <meta name="theme-color" content="#16171B">
+  <base href="/">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
 </head>
-<body class="not-found-body">
-    <div class="container not-found-container">
-        <h1>404</h1>
-        <h2>A Broken Link in the Pattern.</h2>
-        <p>It seems you've taken a wrong turn. The page you're looking for doesn't exist or has been moved.</p>
-        <a href="/index.html" class="btn btn-primary">Return to the Main Grid</a>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="The Gray Square home"><svg><use href="img/icons.svg#mark"/></svg><span>The Gray Square</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="./">Game</a>
+        <a href="support/">Support</a>
+        <a href="privacy/">Privacy</a>
+      </nav>
     </div>
+  </header>
+  <main class="lost">
+    <div class="board-bg"></div>
+    <div class="wrap">
+      <p class="eyebrow">404</p>
+      <h1>Off the board.</h1>
+      <p class="lede">That page isn't here. The square can only move one cell at a time — try one of these.</p>
+      <div class="stores">
+        <a class="btn btn-primary btn-small" href="./">The game</a>
+        <a class="btn btn-ghost btn-small" href="support/">Support</a>
+        <a class="btn btn-ghost btn-small" href="privacy/">Privacy policy</a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
