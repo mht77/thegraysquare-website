@@ -159,8 +159,8 @@
       if (won) {
         msg.classList.add("win");
         msg.textContent = moves <= PAR
-          ? `Solved in ${moves} — that's par. Gold tile.`
-          : `Solved in ${moves}. Par is ${PAR} — try again?`;
+          ? `Solved in ${moves}. That's par. Gold tile.`
+          : `Solved in ${moves}. Par is ${PAR}. Try again?`;
       }
     }
 

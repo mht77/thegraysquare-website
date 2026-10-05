@@ -1,4 +1,4 @@
-# The Gray Square — website
+# The Gray Square website
 
 Static site for [The Gray Square](https://apps.apple.com/app/the-gray-square/id6810801351), served by
 GitHub Pages from `main` at **https://thegraysquare.com** (`CNAME`).
