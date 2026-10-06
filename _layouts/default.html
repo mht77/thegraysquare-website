@@ -1,0 +1,77 @@
+<!doctype html>
+{%- assign s = site.data.site -%}
+{%- assign sd = site.data.defaults.site -%}
+{%- assign c = site.data[page.content_file] -%}
+{%- assign d = site.data.defaults[page.content_file] -%}
+{%- assign name = s.name | default: sd.name -%}
+{%- assign url = s.url | default: sd.url -%}
+{%- assign email = s.email | default: sd.email -%}
+{%- assign title = c.meta.title | default: d.meta.title | default: name -%}
+{%- assign description = c.meta.description | default: d.meta.description -%}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title | strip_html }}</title>
+  {%- if description %}
+  <meta name="description" content="{{ description | strip_html | escape }}">
+  {%- endif %}
+  <meta name="theme-color" content="#16171B">
+  {%- if page.canonical %}
+  <link rel="canonical" href="{{ url }}{{ page.url }}">
+  {%- endif %}
+  {%- if page.share %}
+  {%- assign share_image = s.share_image | default: sd.share_image -%}
+  {%- assign share_description = c.meta.share_description | default: d.meta.share_description | default: description %}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ url }}{{ page.url }}">
+  <meta property="og:title" content="{{ title | strip_html | escape }}">
+  <meta property="og:description" content="{{ share_description | strip_html | escape }}">
+  <meta property="og:image" content="{% if share_image contains '://' %}{{ share_image }}{% else %}{{ url }}{{ share_image | relative_url }}{% endif %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="apple-itunes-app" content="app-id={{ s.apple_app_id | default: sd.apple_app_id }}">
+  {%- endif %}
+  <link rel="icon" type="image/png" href="{{ s.favicon | default: sd.favicon | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ s.apple_touch_icon | default: sd.apple_touch_icon | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/css/site.css' | relative_url }}">
+</head>
+<body>
+  {%- if page.glyphs %}
+  {% include glyphs.html %}
+  {%- endif %}
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ name | escape }} home"><svg><use href="{{ '/img/icons.svg' | relative_url }}#mark"/></svg><span>{{ name }}</span></a>
+      <nav class="nav" aria-label="Main">
+        {%- assign nav = s.nav | default: sd.nav %}
+        {%- for link in nav %}
+        <a href="{{ link.url | relative_url }}"{% if link.url == page.url %} aria-current="page"{% endif %}>{{ link.label }}</a>
+        {%- endfor %}
+      </nav>
+    </div>
+  </header>
+
+  {{ content }}
+
+  {%- unless page.bare %}
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>{{ s.copyright | default: sd.copyright }}</span>
+      <nav aria-label="Footer">
+        {%- assign footer = s.footer | default: sd.footer %}
+        {%- for link in footer %}
+        <a href="{{ link.url | relative_url }}">{{ link.label }}</a>
+        {%- endfor %}
+        <a href="mailto:{{ email }}">{{ email }}</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="{{ '/js/site.js' | relative_url }}" defer></script>
+  {%- endunless %}
+</body>
+</html>

@@ -1,0 +1,133 @@
+meta:
+  title: Privacy Policy | The Gray Square
+  description: What The Gray Square stores, what leaves your device, and who else is involved. No account, no ads, no analytics, no tracking.
+
+hero:
+  eyebrow: The Gray Square · iOS and Android
+  title: Privacy Policy
+  effective: Effective September 10, 2026
+  app_id_label: App ID
+  app_id: com.mht.TheGraySquare
+
+contents_label: On this page
+
+intro: Thank you for playing **The Gray Square**. This policy explains exactly what the game stores, what leaves your device, and who else is involved.
+
+summary:
+  label: The short version
+  text: "The game has no account, no ads, no analytics SDK and no tracking of any kind. Everything it needs lives on your phone. The only data that ever leaves the device does so because a store you already use is holding a backup or a purchase: iCloud on iPhone and iPad, Google Play Games on Android, and the platform's own billing if you buy a key pack."
+
+sections:
+  - id: collect
+    title: 1. Information we collect
+    body: "**We do not collect any personally identifiable information.** There is no account to create, no email address to give, no sign-up, no profile, no newsletter. We operate no server of our own and receive no data about you directly."
+
+  - id: device
+    title: 2. What the game stores on your device
+    contents: 2. On your device
+    body: |
+      The game keeps a small save in the platform's local app storage (Unity `PlayerPrefs`). It contains only:
+
+      * which levels you have unlocked;
+      * the fewest moves you have ever solved each level in;
+      * keys earned and keys spent (the balance is those two numbers);
+      * your accessibility settings (colorblind symbols, goal outlines);
+      * whether you have seen the "How to play" screen.
+
+      There are no identifiers, no advertising ID, no device fingerprint and no timestamps of your activity in it. Uninstalling the game, or clearing its data from the system settings, deletes it from that device.
+
+  - id: cloud
+    title: 3. Cloud save
+    body: |
+      The local save is the source of truth. A cloud copy exists so a reinstall or a second device can restore it. There is still no account of ours.
+
+      ### iPhone and iPad: iCloud
+
+      If the device is signed into iCloud, the game writes one small blob to **iCloud key-value storage**. It holds the same fields listed in section 2. There is no extra sign-in prompt and no Game Center: the Apple Account already on the device is enough.
+
+      You can keep the game fully offline by staying signed out of iCloud, or by turning iCloud off for this app under Apple Account → iCloud. Nothing is lost but the backup.
+
+      Apple stores that blob under Apple's iCloud terms. We cannot browse your iCloud account.
+
+      ### Android: Google Play Games (optional)
+
+      On launch the game asks Google Play Games Services to sign you in so your progress can follow you between Android devices. **You may decline, and the game is fully playable offline and signed out**. Nothing is lost but cloud backup.
+
+      If you do sign in:
+
+      * Google tells the game your Play Games player identity. We do not store it, transmit it anywhere, or link it to anything else.
+      * The game writes one saved-game file to *your* Play Games saved-games storage (backed by your Google Drive app data). It holds the same fields listed in section 2, plus total time played. It is your file, in your Google account; we cannot browse your Drive.
+
+      Play Games sign-in is handled entirely by Google and is governed by the [Google Privacy Policy](https://policies.google.com/privacy).
+
+      ### How two copies are combined
+
+      When a cloud save and a local save disagree, the game **merges** them rather than overwriting either: unlocked levels are combined, the better (fewer) move count is kept, and keys earned and keys spent each take the higher of the two copies. A spend made on one device cannot come back as extra keys on another. Nothing is deleted to resolve a conflict.
+
+  - id: purchases
+    title: 4. In-app purchases
+    body: |
+      The game sells consumable key packs through the store you installed from: the **App Store** on iOS, **Google Play Billing** on Android (both via Unity's In-App Purchasing package). Buying is entirely optional. Keys are also earned by playing, and earned keys work identically.
+
+      * The transaction happens inside Apple's or Google's store. **We never see and never receive your card number, billing address, or any other payment detail.**
+      * The store returns a purchase receipt to the app (product identifier and the store's proof). The app uses it to confirm the purchase is genuine and add keys to your local balance. It is not sent to us and not kept as a profile.
+      * The store keeps its own record of your order, under Apple's or Google's policies. Refunds and order history are handled through that store, not through us.
+
+  - id: not
+    title: "5. What we do <em>not</em> do"
+    body: |
+      This build contains **no advertising SDK, no analytics SDK, no crash-reporting SDK and no third-party tracker**. The game does not use your advertising ID, does not build a profile of you, does not share or sell data, and requests no access to your location, camera, microphone, contacts, photos or files.
+
+      Network access is used only for cloud save and purchases. On Android it is also used for the optional Play Games sign-in.
+
+      Apple and Google each gather aggregate stability information (crashes) for apps distributed through their stores. That is a platform function we cannot switch off and never see individual-level data from; it is covered by their own policies.
+
+  - id: third-party
+    title: 6. Third-party services
+    table_headings:
+      service: Service
+      purpose: Purpose
+      policy: Policy
+    services:
+      - name: iCloud key-value storage
+        purpose: Cloud save on iPhone and iPad
+        policy_label: apple.com/privacy
+        policy_url: https://www.apple.com/privacy/
+      - name: App Store / StoreKit
+        purpose: Processing in-app purchases on iOS
+        policy_label: apple.com/privacy
+        policy_url: https://www.apple.com/privacy/
+      - name: Google Play Games Services
+        purpose: Optional sign-in and cloud saved games on Android
+        policy_label: policies.google.com/privacy
+        policy_url: https://policies.google.com/privacy
+      - name: Google Play Billing
+        purpose: Processing in-app purchases on Android
+        policy_label: policies.google.com/privacy
+        policy_url: https://policies.google.com/privacy
+      - name: Unity engine
+        purpose: The game is built with Unity; no Unity Gaming Services, analytics or ads packages are included
+        policy_label: unity.com/legal/privacy-policy
+        policy_url: https://unity.com/legal/privacy-policy
+
+  - id: children
+    title: 7. Children's privacy
+    body: "The Gray Square does not knowingly collect personal information from anyone, children under 13 included, because it collects none at all. Note that the game does offer optional in-app purchases and, on Android, an optional Google sign-in; parents can restrict both through Apple's Screen Time / Ask to Buy and Google Play's parental controls and Family Link."
+
+  - id: deleting
+    title: 8. Deleting your data
+    body: |
+      * **On the device:** uninstall the game, or clear its data from the system settings (iOS: offload/delete the app; Android: Settings → Apps → The Gray Square → Storage → Clear data).
+      * **iCloud:** Apple Account → iCloud → manage storage, and remove this app's data; or sign out of iCloud / turn iCloud off for this app. Uninstalling the app does not by itself erase the iCloud copy.
+      * **Play Games:** open the Google Play Games app → Settings → *Delete Play Games account data*, and choose this game. That removes the saved-game file from your Google account.
+      * Since we hold no copy of anything, there is nothing further for us to erase. You are welcome to write to us with any question about this.
+
+  - id: changes
+    title: 9. Changes to this policy
+    body: We may update this policy as the game changes. Any new version is posted here with a revised effective date. Material changes will also be reflected in the store listing.
+
+  - id: contact
+    title: 10. Contact
+    body: "Questions, corrections or requests: [**graysquare99@gmail.com**](mailto:graysquare99@gmail.com)"
+
+closing: The Gray Square. See the [game page](/) or [support](/support/).

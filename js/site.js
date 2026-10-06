@@ -64,6 +64,9 @@
     const parNote = root.querySelector("[data-par]");
     const msg = root.querySelector(".demo-msg");
     const panel = root.querySelector(".demo-panel");
+    // Copy comes from the page (data-* on #demo) so the CMS can edit it; these are the fallbacks.
+    const text = (key, fallback, vars = {}) =>
+      (root.dataset[key] || fallback).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
 
     const tiles = [];
     for (let i = 0; i < N * N; i++) {
@@ -96,8 +99,8 @@
       grid = START.slice();
       x = 3; y = 0; carry = -1; moves = 0; won = false;
       msg.textContent = matchMedia("(pointer: coarse)").matches
-        ? "Swipe on the board, or tap a neighboring cell."
-        : "Arrow keys, or click a neighboring cell.";
+        ? text("hintTouch", "Swipe on the board, or tap a neighboring cell.")
+        : text("hintMouse", "Arrow keys, or click a neighboring cell.");
       msg.classList.remove("win");
       render();
     }
@@ -151,16 +154,18 @@
       player.style.setProperty("--under", y === 0 ? "transparent" : paint(grid[index()]));
       player.classList.toggle("empty", y === 0);
 
-      goalCount.textContent = `${done} of ${GOAL.size}`;
+      goalCount.textContent = text("goalCount", "{done} of {total}", { done, total: GOAL.size });
       moveCount.textContent = moves;
       const left = PAR - moves;
-      parNote.textContent = left > 0 ? `${left} left for par` : left === 0 ? "on par" : `${-left} over par`;
+      parNote.textContent = left > 0 ? text("leftForPar", "{n} left for par", { n: left })
+        : left === 0 ? text("onPar", "on par")
+        : text("overPar", "{n} over par", { n: -left });
 
       if (won) {
         msg.classList.add("win");
         msg.textContent = moves <= PAR
-          ? `Solved in ${moves}. That's par. Gold tile.`
-          : `Solved in ${moves}. Par is ${PAR}. Try again?`;
+          ? text("winPar", "Solved in {moves}. That's par. Gold tile.", { moves })
+          : text("winOver", "Solved in {moves}. Par is {par}. Try again?", { moves, par: PAR });
       }
     }
 

@@ -1,0 +1,12 @@
+meta:
+  title: Page not found | The Gray Square
+eyebrow: "404"
+title: Off the board.
+lede: That page isn't here. The square can only move one cell at a time. Try one of these.
+links:
+  - label: The game
+    url: /
+  - label: Support
+    url: /support/
+  - label: Privacy policy
+    url: /privacy/

@@ -1,163 +1,60 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy | The Gray Square</title>
-  <meta name="description" content="What The Gray Square stores, what leaves your device, and who else is involved. No account, no ads, no analytics, no tracking.">
-  <meta name="theme-color" content="#16171B">
-  <link rel="canonical" href="https://thegraysquare.com/privacy/">
-  <link rel="icon" type="image/png" href="../img/favicon.png">
-  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/site.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="../" aria-label="The Gray Square home"><svg><use href="../img/icons.svg#mark"/></svg><span>The Gray Square</span></a>
-      <nav class="nav" aria-label="Main">
-        <a href="../">Game</a>
-        <a href="../support/">Support</a>
-        <a href="./" aria-current="page">Privacy</a>
-      </nav>
-    </div>
-  </header>
-
+---
+layout: default
+content_file: privacy
+canonical: true
+---
+{%- assign c = site.data.privacy -%}
+{%- assign d = site.data.defaults.privacy -%}
+{%- assign sections = c.sections | default: d.sections -%}
   <main>
     <section class="page-hero">
       <div class="board-bg"></div>
       <div class="wrap">
-        <p class="eyebrow">The Gray Square · iOS and Android</p>
-        <h1>Privacy Policy</h1>
+        <p class="eyebrow">{{ c.hero.eyebrow | default: d.hero.eyebrow }}</p>
+        <h1>{{ c.hero.title | default: d.hero.title }}</h1>
         <div class="meta">
-          <span>Effective September 10, 2026</span>
-          <span>App ID <code>com.mht.TheGraySquare</code></span>
+          <span>{{ c.hero.effective | default: d.hero.effective }}</span>
+          <span>{{ c.hero.app_id_label | default: d.hero.app_id_label }} <code>{{ c.hero.app_id | default: d.hero.app_id }}</code></span>
         </div>
       </div>
     </section>
 
     <div class="wrap doc">
-      <aside class="toc" aria-label="On this page">
+      <aside class="toc" aria-label="{{ c.contents_label | default: d.contents_label | escape }}">
         <nav>
           <ol>
-            <li><a href="#collect">1. Information we collect</a></li>
-            <li><a href="#device">2. On your device</a></li>
-            <li><a href="#cloud">3. Cloud save</a></li>
-            <li><a href="#purchases">4. In-app purchases</a></li>
-            <li><a href="#not">5. What we do not do</a></li>
-            <li><a href="#third-party">6. Third-party services</a></li>
-            <li><a href="#children">7. Children's privacy</a></li>
-            <li><a href="#deleting">8. Deleting your data</a></li>
-            <li><a href="#changes">9. Changes to this policy</a></li>
-            <li><a href="#contact">10. Contact</a></li>
+            {%- for section in sections %}
+            <li><a href="#{{ section.id | default: forloop.index | slugify }}">{{ section.contents | default: section.title | strip_html }}</a></li>
+            {%- endfor %}
           </ol>
         </nav>
       </aside>
 
       <article class="prose">
-        <p>Thank you for playing <strong>The Gray Square</strong>. This policy explains exactly what the game stores, what leaves your device, and who else is involved.</p>
+        {{ c.intro | default: d.intro | markdownify }}
 
         <div class="summary">
-          <p class="eyebrow">The short version</p>
-          <p>The game has no account, no ads, no analytics SDK and no tracking of any kind. Everything it needs lives on your phone. The only data that ever leaves the device does so because a store you already use is holding a backup or a purchase: iCloud on iPhone and iPad, Google Play Games on Android, and the platform's own billing if you buy a key pack.</p>
+          <p class="eyebrow">{{ c.summary.label | default: d.summary.label }}</p>
+          {{ c.summary.text | default: d.summary.text | markdownify }}
         </div>
-
-        <h2 id="collect">1. Information we collect</h2>
-        <p><strong>We do not collect any personally identifiable information.</strong> There is no account to create, no email address to give, no sign-up, no profile, no newsletter. We operate no server of our own and receive no data about you directly.</p>
-
-        <h2 id="device">2. What the game stores on your device</h2>
-        <p>The game keeps a small save in the platform's local app storage (Unity <code>PlayerPrefs</code>). It contains only:</p>
-        <ul>
-          <li>which levels you have unlocked;</li>
-          <li>the fewest moves you have ever solved each level in;</li>
-          <li>keys earned and keys spent (the balance is those two numbers);</li>
-          <li>your accessibility settings (colorblind symbols, goal outlines);</li>
-          <li>whether you have seen the "How to play" screen.</li>
-        </ul>
-        <p>There are no identifiers, no advertising ID, no device fingerprint and no timestamps of your activity in it. Uninstalling the game, or clearing its data from the system settings, deletes it from that device.</p>
-
-        <h2 id="cloud">3. Cloud save</h2>
-        <p>The local save is the source of truth. A cloud copy exists so a reinstall or a second device can restore it. There is still no account of ours.</p>
-
-        <h3 id="icloud">iPhone and iPad: iCloud</h3>
-        <p>If the device is signed into iCloud, the game writes one small blob to <strong>iCloud key-value storage</strong>. It holds the same fields listed in section 2. There is no extra sign-in prompt and no Game Center: the Apple Account already on the device is enough.</p>
-        <p>You can keep the game fully offline by staying signed out of iCloud, or by turning iCloud off for this app under Apple Account → iCloud. Nothing is lost but the backup.</p>
-        <p>Apple stores that blob under Apple's iCloud terms. We cannot browse your iCloud account.</p>
-
-        <h3 id="play-games">Android: Google Play Games (optional)</h3>
-        <p>On launch the game asks Google Play Games Services to sign you in so your progress can follow you between Android devices. <strong>You may decline, and the game is fully playable offline and signed out</strong>. Nothing is lost but cloud backup.</p>
-        <p>If you do sign in:</p>
-        <ul>
-          <li>Google tells the game your Play Games player identity. We do not store it, transmit it anywhere, or link it to anything else.</li>
-          <li>The game writes one saved-game file to <em>your</em> Play Games saved-games storage (backed by your Google Drive app data). It holds the same fields listed in section 2, plus total time played. It is your file, in your Google account; we cannot browse your Drive.</li>
-        </ul>
-        <p>Play Games sign-in is handled entirely by Google and is governed by the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
-
-        <h3 id="merge">How two copies are combined</h3>
-        <p>When a cloud save and a local save disagree, the game <strong>merges</strong> them rather than overwriting either: unlocked levels are combined, the better (fewer) move count is kept, and keys earned and keys spent each take the higher of the two copies. A spend made on one device cannot come back as extra keys on another. Nothing is deleted to resolve a conflict.</p>
-
-        <h2 id="purchases">4. In-app purchases</h2>
-        <p>The game sells consumable key packs through the store you installed from: the <strong>App Store</strong> on iOS, <strong>Google Play Billing</strong> on Android (both via Unity's In-App Purchasing package). Buying is entirely optional. Keys are also earned by playing, and earned keys work identically.</p>
-        <ul>
-          <li>The transaction happens inside Apple's or Google's store. <strong>We never see and never receive your card number, billing address, or any other payment detail.</strong></li>
-          <li>The store returns a purchase receipt to the app (product identifier and the store's proof). The app uses it to confirm the purchase is genuine and add keys to your local balance. It is not sent to us and not kept as a profile.</li>
-          <li>The store keeps its own record of your order, under Apple's or Google's policies. Refunds and order history are handled through that store, not through us.</li>
-        </ul>
-
-        <h2 id="not">5. What we do <em>not</em> do</h2>
-        <p>This build contains <strong>no advertising SDK, no analytics SDK, no crash-reporting SDK and no third-party tracker</strong>. The game does not use your advertising ID, does not build a profile of you, does not share or sell data, and requests no access to your location, camera, microphone, contacts, photos or files.</p>
-        <p>Network access is used only for cloud save and purchases. On Android it is also used for the optional Play Games sign-in.</p>
-        <p>Apple and Google each gather aggregate stability information (crashes) for apps distributed through their stores. That is a platform function we cannot switch off and never see individual-level data from; it is covered by their own policies.</p>
-
-        <h2 id="third-party">6. Third-party services</h2>
+        {% for section in sections %}
+        <h2 id="{{ section.id | default: forloop.index | slugify }}">{{ section.title }}</h2>
+        {{ section.body | markdownify }}
+        {%- if section.services and section.services.size > 0 %}
+        {%- assign th = section.table_headings %}
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Service</th><th>Purpose</th><th>Policy</th></tr></thead>
+            <thead><tr><th>{{ th.service | default: "Service" }}</th><th>{{ th.purpose | default: "Purpose" }}</th><th>{{ th.policy | default: "Policy" }}</th></tr></thead>
             <tbody>
-              <tr><td>iCloud key-value storage</td><td>Cloud save on iPhone and iPad</td><td><a href="https://www.apple.com/privacy/">apple.com/privacy</a></td></tr>
-              <tr><td>App Store / StoreKit</td><td>Processing in-app purchases on iOS</td><td><a href="https://www.apple.com/privacy/">apple.com/privacy</a></td></tr>
-              <tr><td>Google Play Games Services</td><td>Optional sign-in and cloud saved games on Android</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
-              <tr><td>Google Play Billing</td><td>Processing in-app purchases on Android</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
-              <tr><td>Unity engine</td><td>The game is built with Unity; no Unity Gaming Services, analytics or ads packages are included</td><td><a href="https://unity.com/legal/privacy-policy">unity.com/legal/privacy-policy</a></td></tr>
+              {%- for service in section.services %}
+              <tr><td>{{ service.name }}</td><td>{{ service.purpose }}</td><td><a href="{{ service.policy_url }}">{{ service.policy_label | default: service.policy_url }}</a></td></tr>
+              {%- endfor %}
             </tbody>
           </table>
         </div>
-
-        <h2 id="children">7. Children's privacy</h2>
-        <p>The Gray Square does not knowingly collect personal information from anyone, children under 13 included, because it collects none at all. Note that the game does offer optional in-app purchases and, on Android, an optional Google sign-in; parents can restrict both through Apple's Screen Time / Ask to Buy and Google Play's parental controls and Family Link.</p>
-
-        <h2 id="deleting">8. Deleting your data</h2>
-        <ul>
-          <li><strong>On the device:</strong> uninstall the game, or clear its data from the system settings (iOS: offload/delete the app; Android: Settings → Apps → The Gray Square → Storage → Clear data).</li>
-          <li><strong>iCloud:</strong> Apple Account → iCloud → manage storage, and remove this app's data; or sign out of iCloud / turn iCloud off for this app. Uninstalling the app does not by itself erase the iCloud copy.</li>
-          <li><strong>Play Games:</strong> open the Google Play Games app → Settings → <em>Delete Play Games account data</em>, and choose this game. That removes the saved-game file from your Google account.</li>
-          <li>Since we hold no copy of anything, there is nothing further for us to erase. You are welcome to write to us with any question about this.</li>
-        </ul>
-
-        <h2 id="changes">9. Changes to this policy</h2>
-        <p>We may update this policy as the game changes. Any new version is posted here with a revised effective date. Material changes will also be reflected in the store listing.</p>
-
-        <h2 id="contact">10. Contact</h2>
-        <p>Questions, corrections or requests: <a href="mailto:graysquare99@gmail.com"><strong>graysquare99@gmail.com</strong></a></p>
-        <p class="muted">The Gray Square. See the <a href="../">game page</a> or <a href="../support/">support</a>.</p>
+        {%- endif %}
+        {% endfor %}
+        <div class="muted">{{ c.closing | default: d.closing | markdownify }}</div>
       </article>
     </div>
   </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <span>© 2026 Mohammad Toosi</span>
-      <nav aria-label="Footer">
-        <a href="../support/">Support</a>
-        <a href="./">Privacy Policy</a>
-        <a href="mailto:graysquare99@gmail.com">graysquare99@gmail.com</a>
-      </nav>
-    </div>
-  </footer>
-
-  <script src="../js/site.js" defer></script>
-</body>
-</html>

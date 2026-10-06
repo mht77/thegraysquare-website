@@ -1,0 +1,18 @@
+# GitHub Pages builds this with Jekyll. Page copy and images live in _data/*.yml (edited through
+# Pages CMS, see .pages.yml); _data/defaults/ holds the fallback for any field left empty there.
+title: The Gray Square
+url: https://thegraysquare.com
+baseurl: ""
+permalink: pretty
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  # Keep straight quotes; the copy was written with them.
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+exclude:
+  - README.md
+  - .pages.yml
+  - Gemfile
+  - Gemfile.lock
+  - vendor

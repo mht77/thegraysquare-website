@@ -1,0 +1,74 @@
+meta:
+  title: Support | The Gray Square
+  description: "Help with The Gray Square: getting unstuck, keys and purchases, restoring progress on a new device, colorblind settings, and how to reach us."
+
+hero:
+  eyebrow: Help
+  title: Support
+  lede: Stuck on a board, missing keys, or moving to a new phone? Most answers are below. Anything else, write to us.
+
+contact:
+  title: Write to us
+  body: Tell us your device, its iOS or Android version, and the level if it's about one (for example *Horizontal · 31*). For a purchase, include the order number from your App Store or Google Play receipt.
+  button: Email support
+  subject: The Gray Square support
+
+groups:
+  - title: Playing
+    questions:
+      - question: How does the game work?
+        answer: |
+          Swipe to slide the gray square one cell. Wherever it lands, it trades the color it is carrying for the color already there. The very first move just picks a color up. Match every marked cell to its target color and the level is done.
+
+          The [game page](/#how) has a small board you can play in the browser. In the game, the **?** button at the top of every screen opens How to play.
+      - question: I'm stuck on a level.
+        answer: |
+          You never have to clear a board to get past it. A key opens any locked board whose left or upper neighbor is already open, so a board you cannot crack never blocks the rest. Come back to it later.
+
+          Each of the seven patterns is also its own run of 49 boards, so you can switch shapes at any time from the pattern list.
+      - question: What do par, the move meter and the gold tile mean?
+        answer: |
+          **Par** is the fewest moves the level can possibly be solved in, computed by a solver before the level shipped. The **move budget** is the point past which a clear no longer counts. The meter under the board shows how many moves are left before par, when you are on it, and when the budget has run out.
+
+          Clear a level in par and its tile on the level list turns gold. Your save keeps your best run, not your last, so a sloppy replay can never cost you a record.
+      - question: Some colors are hard to tell apart.
+        answer: |
+          Open **Settings** (the gear at the top of the screen) or **How to play**, and turn on:
+
+          * **Colorblind symbols:** every color also carries a distinct shape, on tiles, on your square and in the goal map.
+          * **Outline goal cells:** rings the cells still to fill and badges the ones already right.
+
+          Both take effect immediately, even mid-level.
+  - title: Keys and purchases
+    questions:
+      - question: How do I get more keys?
+        answer: "By playing: a clear earns one key, a clear in par earns two. You start with three. If you run dry, key packs are for sale in the game's shop, the game's only purchase. Keys you buy and keys you earn are the same keys."
+      - question: I bought keys but they didn't arrive.
+        answer: |
+          Close the game and open it again while you're online. A purchase the game has not finished delivering stays open with the store and is granted on the next launch.
+
+          If the purchase needs approval (Ask to Buy on iOS, or a family manager on Google Play), the keys arrive once it is approved.
+
+          Still missing? [Write to us](mailto:graysquare99@gmail.com?subject=Missing%20keys) with the order number from your receipt.
+      - question: How do I get a refund?
+        answer: Payments are handled entirely by Apple or Google, and so are refunds. On iPhone and iPad, use [reportaproblem.apple.com](https://reportaproblem.apple.com). On Android, open your order history in Google Play, or see [Google Play's refund help](https://support.google.com/googleplay/answer/2479637).
+  - title: Progress and devices
+    questions:
+      - question: How do I move my progress to a new phone?
+        answer: |
+          **iPhone and iPad:** sign into the same Apple Account with iCloud on, and your progress restores through iCloud. There is no separate sign-in.
+
+          **Android:** sign in to Google Play Games when the game asks, on both devices, with the same Google account.
+
+          When a device and the cloud disagree they are merged rather than overwritten: unlocked levels combine, the better move count is kept, and a spend on one device cannot come back as extra keys on another.
+      - question: I reinstalled and my progress isn't there.
+        answer: |
+          Give it a few seconds after launch. The cloud copy arrives after the first screen has drawn, and the screens update when it lands. Check that you are online and signed in (iCloud on iOS, Google Play Games on Android).
+
+          Progress is saved locally first, so if you never signed in to a cloud backup, it lived only on the old install.
+      - question: Do I need an account or an internet connection?
+        answer: No. There is no account, and the game is fully playable offline. The network is only used for cloud save and purchases (and, on Android, the optional Play Games sign-in).
+      - question: How do I delete my data?
+        answer: Everything lives on your device and in your own iCloud or Play Games storage. We hold no copy. The [privacy policy](/privacy/#deleting) lists the exact steps for each.
+
+closing: The Gray Square runs on iPhone, iPad and Android. Free, with optional key packs. No ads, no analytics, no tracking. See the [privacy policy](/privacy/).

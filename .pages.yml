@@ -1,0 +1,328 @@
+# Pages CMS (https://pagescms.org). Every field here is optional: leave one empty and the site
+# falls back to the same field in _data/defaults/, so a blank or deleted entry never breaks a page.
+# The playable demo board, the animations and the decorative graphics are not editable here.
+
+media:
+  input: img
+  output: /img
+  categories: [image]
+
+content:
+  - name: site
+    label: Site settings
+    type: file
+    path: _data/site.yml
+    format: yaml
+    fields:
+      - { name: name, label: Game name, type: string }
+      - { name: url, label: Site address, type: string }
+      - { name: email, label: Support email, type: string }
+      - { name: copyright, label: Copyright line, type: string }
+      - { name: apple_app_id, label: App Store app ID, type: string }
+      - { name: favicon, label: Favicon, type: image }
+      - { name: apple_touch_icon, label: Home screen icon, type: image }
+      - { name: share_image, label: Link preview image, type: image }
+      - name: nav
+        label: Header links
+        type: object
+        list: true
+        fields:
+          - { name: label, type: string }
+          - { name: url, type: string }
+      - name: footer
+        label: Footer links
+        description: The support email is always added after these.
+        type: object
+        list: true
+        fields:
+          - { name: label, type: string }
+          - { name: url, type: string }
+      - name: stores
+        label: Store buttons
+        type: object
+        fields:
+          - name: app_store
+            label: App Store
+            type: object
+            fields:
+              - { name: url, type: string }
+              - { name: small, label: Small text, type: string }
+              - { name: label, type: string }
+          - name: google_play
+            label: Google Play
+            type: object
+            fields:
+              - { name: url, type: string }
+              - { name: small, label: Small text, type: string }
+              - { name: label, type: string }
+
+  - name: home
+    label: Game page
+    type: file
+    path: _data/home.yml
+    format: yaml
+    fields:
+      - name: meta
+        label: Page title and description
+        type: object
+        fields:
+          - { name: title, label: Browser tab title, type: string }
+          - { name: description, label: Search description, type: text }
+          - { name: share_description, label: Link preview description, type: text }
+      - name: hero
+        label: Top of the page
+        type: object
+        fields:
+          - { name: title_start, label: Title (before the gray word), type: string }
+          - { name: title_gray, label: Title (gray word), type: string }
+          - { name: title_end, label: Title (second line), type: string }
+          - { name: tagline, label: Tagline words, description: Colored orange, red, blue in turn., type: string, list: true }
+          - { name: lede, label: Intro, type: text }
+          - name: chips
+            label: Badges
+            type: object
+            list: true
+            fields:
+              - { name: label, type: string }
+              - name: color
+                type: select
+                options:
+                  values: [yellow, purple, green, red, blue, orange, brown, gold, light-blue]
+          - name: phone_back
+            label: Back phone
+            type: object
+            fields:
+              - { name: image, type: image }
+              - { name: alt, label: Image description, type: string }
+          - name: phone_front
+            label: Front phone
+            type: object
+            fields:
+              - { name: image, type: image }
+              - { name: alt, label: Image description, type: string }
+      - name: how
+        label: How it plays
+        type: object
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: title_accent, label: Heading (colored end), type: string }
+          - { name: lede, label: Intro, type: text }
+          - name: demo
+            label: Demo board text
+            description: "Placeholders in braces, like {moves}, are filled in by the demo."
+            type: object
+            fields:
+              - { name: label, label: Screen reader label, type: string }
+              - { name: goal, label: Goal label, type: string }
+              - { name: moves, label: Moves label, type: string }
+              - { name: reset, label: Restart button label, type: string }
+              - { name: hint_touch, label: Hint on phones, type: string }
+              - { name: hint_mouse, label: Hint on computers, type: string }
+              - { name: goal_count, label: "Goal progress ({done}, {total})", type: string }
+              - { name: left_for_par, label: "Moves left for par ({n})", type: string }
+              - { name: on_par, label: On par, type: string }
+              - { name: over_par, label: "Over par ({n})", type: string }
+              - { name: win_par, label: "Solved at par ({moves})", type: string }
+              - { name: win_over, label: "Solved over par ({moves}, {par})", type: string }
+          - name: rules
+            label: Rules
+            type: object
+            list: true
+            fields:
+              - { name: title, type: string }
+              - { name: text, type: text }
+      - name: par
+        label: Par, keys and gold
+        type: object
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: title_accent, label: Heading (colored end), type: string }
+          - { name: lede, label: Intro, type: text }
+          - name: par_card
+            label: Par card
+            type: object
+            fields:
+              - { name: title, type: string }
+              - { name: body, type: rich-text, options: { format: markdown, media: false } }
+          - name: key_card
+            label: Key card
+            type: object
+            fields:
+              - { name: title, type: string }
+              - { name: body, type: rich-text, options: { format: markdown, media: false } }
+      - name: boards
+        label: The boards
+        type: object
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: title_accent, label: Heading (colored end), type: string }
+          - { name: lede, label: Intro, type: text }
+          - name: patterns
+            label: Shapes
+            type: object
+            list: true
+            fields:
+              - { name: name, type: string }
+              - { name: count, label: Count text, type: string }
+              - { name: cells, label: Icon, description: "Nine 0s and 1s, row by row, for the 3×3 icon. 1 is a lit cell.", type: string }
+      - name: accessibility
+        label: Accessibility
+        type: object
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: title_accent, label: Heading (colored end), type: string }
+          - { name: lede, label: Intro, type: text }
+          - { name: switch, label: Switch label, type: string }
+          - { name: points, label: Points, description: "**Bold** works here.", type: text, list: true }
+      - name: features
+        label: Cloud save and solver cards
+        type: object
+        list: true
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, type: string }
+          - { name: body, type: rich-text, options: { format: markdown, media: false } }
+      - name: screenshots
+        label: Screenshots
+        type: object
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: title_accent, label: Heading (colored end), type: string }
+          - { name: lede, label: Intro, type: text }
+          - name: images
+            type: object
+            list: true
+            fields:
+              - { name: image, type: image }
+              - { name: alt, label: Image description, type: string }
+      - name: closing
+        label: Bottom of the page
+        type: object
+        fields:
+          - { name: icon, type: image }
+          - { name: title, label: Heading, type: string }
+          - { name: lede, label: Text, type: text }
+
+  - name: support
+    label: Support page
+    type: file
+    path: _data/support.yml
+    format: yaml
+    fields:
+      - name: meta
+        label: Page title and description
+        type: object
+        fields:
+          - { name: title, label: Browser tab title, type: string }
+          - { name: description, label: Search description, type: text }
+      - name: hero
+        label: Top of the page
+        type: object
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: lede, label: Intro, type: text }
+      - name: contact
+        label: Contact card
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: body, type: rich-text, options: { format: markdown, media: false } }
+          - { name: button, label: Button label, type: string }
+          - { name: subject, label: Email subject, type: string }
+      - name: groups
+        label: Questions
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Group heading, type: string }
+          - name: questions
+            type: object
+            list: true
+            fields:
+              - { name: question, type: string }
+              - { name: answer, type: rich-text, options: { format: markdown, media: false } }
+      - { name: closing, label: Closing note, type: rich-text, options: { format: markdown, media: false } }
+
+  - name: privacy
+    label: Privacy policy
+    type: file
+    path: _data/privacy.yml
+    format: yaml
+    fields:
+      - name: meta
+        label: Page title and description
+        type: object
+        fields:
+          - { name: title, label: Browser tab title, type: string }
+          - { name: description, label: Search description, type: text }
+      - name: hero
+        label: Top of the page
+        type: object
+        fields:
+          - { name: eyebrow, label: Small heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: effective, label: Effective date, type: string }
+          - { name: app_id_label, label: App ID label, type: string }
+          - { name: app_id, label: App ID, type: string }
+      - { name: contents_label, label: Contents label (screen readers), type: string }
+      - { name: intro, type: rich-text, options: { format: markdown, media: false } }
+      - name: summary
+        label: Short version box
+        type: object
+        fields:
+          - { name: label, type: string }
+          - { name: text, type: rich-text, options: { format: markdown, media: false } }
+      - name: sections
+        type: object
+        list: true
+        fields:
+          - { name: id, label: Link anchor, description: "Used in links such as /privacy/#deleting. Keep it short, lowercase, no spaces.", type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: contents, label: Contents entry, description: Shorter heading for the side menu. Leave empty to reuse the heading., type: string }
+          - { name: body, type: rich-text, options: { format: markdown, media: false } }
+          - name: table_headings
+            label: Services table headings
+            type: object
+            fields:
+              - { name: service, type: string }
+              - { name: purpose, type: string }
+              - { name: policy, type: string }
+          - name: services
+            label: Services table
+            description: Shown under the body when it has rows.
+            type: object
+            list: true
+            fields:
+              - { name: name, type: string }
+              - { name: purpose, type: string }
+              - { name: policy_label, label: Link text, type: string }
+              - { name: policy_url, label: Link, type: string }
+      - { name: closing, label: Closing note, type: rich-text, options: { format: markdown, media: false } }
+
+  - name: not_found
+    label: 404 page
+    type: file
+    path: _data/not_found.yml
+    format: yaml
+    fields:
+      - name: meta
+        label: Page title
+        type: object
+        fields:
+          - { name: title, label: Browser tab title, type: string }
+      - { name: eyebrow, label: Small heading, type: string }
+      - { name: title, label: Heading, type: string }
+      - { name: lede, label: Text, type: text }
+      - name: links
+        label: Buttons
+        type: object
+        list: true
+        fields:
+          - { name: label, type: string }
+          - { name: url, type: string }

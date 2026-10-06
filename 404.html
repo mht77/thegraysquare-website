@@ -1,40 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found | The Gray Square</title>
-  <meta name="theme-color" content="#16171B">
-  <base href="/">
-  <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="./" aria-label="The Gray Square home"><svg><use href="img/icons.svg#mark"/></svg><span>The Gray Square</span></a>
-      <nav class="nav" aria-label="Main">
-        <a href="./">Game</a>
-        <a href="support/">Support</a>
-        <a href="privacy/">Privacy</a>
-      </nav>
-    </div>
-  </header>
+---
+layout: default
+content_file: not_found
+bare: true
+permalink: /404.html
+---
+{%- assign c = site.data.not_found -%}
+{%- assign d = site.data.defaults.not_found -%}
   <main class="lost">
     <div class="board-bg"></div>
     <div class="wrap">
-      <p class="eyebrow">404</p>
-      <h1>Off the board.</h1>
-      <p class="lede">That page isn't here. The square can only move one cell at a time. Try one of these.</p>
+      <p class="eyebrow">{{ c.eyebrow | default: d.eyebrow }}</p>
+      <h1>{{ c.title | default: d.title }}</h1>
+      <p class="lede">{{ c.lede | default: d.lede }}</p>
       <div class="stores">
-        <a class="btn btn-primary btn-small" href="./">The game</a>
-        <a class="btn btn-ghost btn-small" href="support/">Support</a>
-        <a class="btn btn-ghost btn-small" href="privacy/">Privacy policy</a>
+        {%- assign links = c.links | default: d.links %}
+        {%- for link in links %}
+        <a class="btn {% if forloop.first %}btn-primary{% else %}btn-ghost{% endif %} btn-small" href="{{ link.url | relative_url }}">{{ link.label }}</a>
+        {%- endfor %}
       </div>
     </div>
   </main>
-</body>
-</html>

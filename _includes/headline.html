@@ -1,0 +1,4 @@
+{%- comment -%} A section head whose last words take the section's accent colour, as in the store art. {%- endcomment -%}
+{%- assign title = include.title | default: include.fallback -%}
+{%- assign accent = include.accent | default: include.accent_fallback -%}
+<h2>{{ title }}{% unless accent == nil or accent == "" %} <b{% if include.accent_color %} style="color:{{ include.accent_color }}"{% endif %}>{{ accent }}</b>{% endunless %}</h2>

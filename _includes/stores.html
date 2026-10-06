@@ -1,0 +1,10 @@
+{%- assign stores = site.data.site.stores -%}
+{%- assign fallback = site.data.defaults.site.stores -%}
+<div class="stores">
+  <a class="btn btn-primary" href="{{ stores.app_store.url | default: fallback.app_store.url }}">
+    <svg><use href="{{ '/img/icons.svg' | relative_url }}#apple"/></svg><span><small>{{ stores.app_store.small | default: fallback.app_store.small }}</small>{{ stores.app_store.label | default: fallback.app_store.label }}</span>
+  </a>
+  <a class="btn btn-ghost" href="{{ stores.google_play.url | default: fallback.google_play.url }}">
+    <svg><use href="{{ '/img/icons.svg' | relative_url }}#play"/></svg><span><small>{{ stores.google_play.small | default: fallback.google_play.small }}</small>{{ stores.google_play.label | default: fallback.google_play.label }}</span>
+  </a>
+</div>
